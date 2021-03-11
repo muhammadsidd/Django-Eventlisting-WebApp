@@ -8,7 +8,7 @@ from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from user.models import UserManagement
 from user.forms import UserForm
 
-class UserDetails (ListView):
+class UserList (ListView):
     model = UserManagement
     template_name = 'user/user_List.html'
     context_object_name = 'user'
