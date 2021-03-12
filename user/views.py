@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 # Create your views here
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
-from user.models import UserManagement
+from user.models import UserManagement,Role
 from user.forms import UserForm
 
 class UserList (LoginRequiredMixin,ListView):
@@ -13,6 +13,11 @@ class UserList (LoginRequiredMixin,ListView):
     template_name = 'user/user_List.html'
     context_object_name = 'users'
     login_url = 'login'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        inner_q = Role.objects.filter(type='admin').values('id')
+        context['admin_length'] = UserManagement.objects.filter(role__in=inner_q).count()
+        return context
 
     def form_valid(self, form):
         form.instance.user = self.request.user

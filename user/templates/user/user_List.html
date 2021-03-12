@@ -22,7 +22,20 @@
                 <td><a href="{{ user.get_absolute_url }}">{{ user.email }}</a></td>
                 <td><a href="{{ user.get_absolute_url }}">{{ user.role }}</a></td>
                 <td><a href="{% url 'user:user_update' user.id %}" > Edit </a></td>
-                <td><a href="{% url 'user:user_delete' user.id %}" > Delete </a></td>
+                <td><a href="{% url 'user:user_delete' user.id %}" > 
+                {% if user.role|stringformat:"s" == "admin" %}
+                 {% if admin_length  > 1 %}
+                 Delete
+                {% endif %}
+                        
+                                {% else %}
+                            Delete
+                                {% endif%}
+
+
+            
+
+                </a></td>
             </tr>
         {% endfor %}
 
