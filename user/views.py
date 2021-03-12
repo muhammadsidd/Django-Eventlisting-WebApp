@@ -8,10 +8,13 @@ from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from user.models import UserManagement
 from user.forms import UserForm
 
-class UserList (ListView):
+class UserList (ListView,LoginRequiredMixin):
     model = UserManagement
     template_name = 'user/user_List.html'
     context_object_name = 'user'
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(UserList, self).form_valid(form)
 
 class UserCreate(LoginRequiredMixin,CreateView):
     model = UserManagement
@@ -35,7 +38,11 @@ class UserUpdate(LoginRequiredMixin,UpdateView):
         form.instance.user = self.request.user
         return super(UserUpdate, self).form_valid(form)
 
-class UserDelete(DeleteView):
+class UserDelete(DeleteView,LoginRequiredMixin):
     model = UserManagement
     template_name = 'user/user_confirm_delete.html'
     success_url = reverse_lazy('user:user_list')
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(UserDelete, self).form_valid(form)
