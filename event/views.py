@@ -12,6 +12,7 @@ class EventList(LoginRequiredMixin, ListView):
     success_url = reverse_lazy('event:event_List')
     login_url = 'login'
 
+#this is a test
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(EventList, self).form_valid(form)
