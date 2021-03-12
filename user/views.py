@@ -8,34 +8,49 @@ from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from user.models import UserManagement
 from user.forms import UserForm
 
-class UserList (ListView):
+
+class UserList(LoginRequiredMixin,ListView):
     model = UserManagement
     template_name = 'user/user_List.html'
-    context_object_name = 'user'
+    context_object_name = 'users'
 
-class UserCreate(LoginRequiredMixin,CreateView):
+    success_url = reverse_lazy('user:user_List')
+    login_url = 'login'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(UserList, self).form_valid(form)
+
+class UserCreate(LoginRequiredMixin, CreateView):
     model = UserManagement
     form_class = UserForm
     template_name = 'user/user_create.html'
-    success_url = reverse_lazy('user:user_list')
+    success_url = reverse_lazy('user:user_List')
     login_url = 'login'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(UserCreate, self).form_valid(form)
 
-class UserUpdate(LoginRequiredMixin,UpdateView):
+
+class UserUpdate(LoginRequiredMixin, UpdateView):
     model = UserManagement
     fields = '__all__'
     template_name = 'user/user_update.html'
-    success_url = reverse_lazy('user:user_list')
+    success_url = reverse_lazy('user:user_List')
     login_url = 'login'
 
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(UserUpdate, self).form_valid(form)
 
+
 class UserDelete(DeleteView):
     model = UserManagement
     template_name = 'user/user_confirm_delete.html'
-    success_url = reverse_lazy('user:user_list')
+    success_url = reverse_lazy('user:user_List')
+    login_url = 'login'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(UserDelete, self).form_valid(form)
