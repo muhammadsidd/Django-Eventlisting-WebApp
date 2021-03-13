@@ -2,7 +2,7 @@
 <h1>{% block title %}Event List{% endblock title %}</h1>
 
 {% block content %}
-    {% if event %}
+    {% if events %}
         <table>
             <tr>
                 <th> Event </th>
@@ -19,7 +19,7 @@
                <!-- <td><a href="{{ event.get_absolute_url }}">{{ event.name}}</a></td>
                  <td><a href="{% url 'event:event_detail' event.id %}">
                 <img src="{{event.image.url}}" height = '200' width = '250'></img></a></td> -->
-                <td><a href="{{ event.get_absolute_url }}">{{ event.name }}</a></td>
+                <td><a href="{{ event.get_absolute_url }}">{{ event.title }}</a></td>
                 <td><a href="{{ event.get_absolute_url }}">{{ event.Category }}</a></td>
                 <td><a href="{{ event.get_absolute_url }}">{{ event.location }}</a></td>
                 <td><a href="{{ event.get_absolute_url }}">{{ event.start_date}}</a></td>

@@ -8,7 +8,7 @@ from event.forms import EventForm, CategoryForm
 class EventList(LoginRequiredMixin, ListView):
     model = Event
     template_name = 'event/event_list.html'
-    context_object_name = 'event'
+    context_object_name = 'events'
     success_url = reverse_lazy('event:event_list')
     login_url = 'login'
 
