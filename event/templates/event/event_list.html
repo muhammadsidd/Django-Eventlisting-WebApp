@@ -1,10 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends '../base.html' %}
+<h1>{% block title %}Event List{% endblock title %}</h1>
 
-</body>
-</html>
+{% block content %}
+    {% if event %}
+        <table>
+            <tr>
+                <th> Event </th>
+                <th> Category </th>
+                <th> Location </th>
+                <th> Start Date </th>
+                <th> End Date </th>
+                <th></th>
+                <th></th>
+            </tr>
+
+        {% for event in events %}
+            <tr>
+               <!-- <td><a href="{{ event.get_absolute_url }}">{{ event.name}}</a></td>
+                 <td><a href="{% url 'event:event_detail' event.id %}">
+                <img src="{{event.image.url}}" height = '200' width = '250'></img></a></td> -->
+                <td><a href="{{ event.get_absolute_url }}">{{ event.name }}</a></td>
+                <td><a href="{{ event.get_absolute_url }}">{{ event.Category }}</a></td>
+                <td><a href="{{ event.get_absolute_url }}">{{ event.location }}</a></td>
+                <td><a href="{{ event.get_absolute_url }}">{{ event.start_date}}</a></td>
+                <td><a href="{% url 'event:event_update' event.id %}" > Edit </a></td>
+             <!--   <td><a href="{% url 'event:event_delete' event.id %}" > Delete </a></td> -->
+            </tr>
+        {% endfor %}
+            <tr><a href="{% url 'event:event_create' %}" > Add a New Event </a></tr>
+            <td><a href="{% url 'event:category_new' %}" > ADD NEW CATEGORY? </a></td>
+
+        </table>
+    {% else %}
+        <p>No Event are available.</p>
+    {% endif %}
+{% endblock content %}

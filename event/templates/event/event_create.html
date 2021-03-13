@@ -7,4 +7,14 @@
 <body>
 
 </body>
-</html>
+</html>{% extends '../base.html' %}
+{% block title %}Create New Event{% endblock title %}
+
+{% block content %}
+    <form method="post" action="{% url 'event:event_create' %}" enctype="multipart/form-data">{% csrf_token %}
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" value="Save">Save</button>
+        <a href="{% url 'event:event_list' %}" > Cancel </a>
+    </form>
+{% endblock content %}

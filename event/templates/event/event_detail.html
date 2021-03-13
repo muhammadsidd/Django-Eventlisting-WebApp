@@ -1,10 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends '../base.html' %}
 
-</body>
-</html>
+{% load static %}
+
+{% block content %}
+     <div id="sidebar">
+        <h3>Categories</h3>
+        <ul>
+            <li>
+                <a href="{% url 'event:event_list' %}">All</a>
+            </li>
+            {% for c in categories %}
+            <li {% if c.name == event.category %} class="selected"{% endif %}>
+                <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div id="main" class="event-detail">
+        <h1>{{ event.name }} </h1>
+        <div class="event-detail">
+            <a href="{{ event.get_absolute_url }}">
+                <image src="{% if event.images %}
+                                {{ event.images.url }}
+                             {% else %}
+                                {% static 'images/no_image.png' %}
+                             {% endif %}">
+                </image>
+            </a>
+        </div>
+
+    </div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% load static %}
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %} Event Management {% endblock %}</title>
+    <link href="{% static 'event/base.css' %}" rel="stylesheet">
+</head>
+<body>
+   <div id="header">
+        <a href="{% url 'event:event_list' %}" class="logo"> My Event </a>
+        {% if user.username %}
+                <p>User: {{ user.username }} | <a href="{% url 'logout' %}?next={{request.path}}">logout</a></p>
+            {% else %}
+                <p><a href="{% url 'login' %}?next={{request.path}}">login</a></p>
+            {% endif %}
+    </div>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
