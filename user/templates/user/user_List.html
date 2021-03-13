@@ -20,7 +20,7 @@
                 <td><a href="{{ user.get_absolute_url }}">{{ user.first_name }}</a></td>
                 <td><a href="{{ user.get_absolute_url }}">{{ user.last_name }}</a></td>
                 <td><a href="{{ user.get_absolute_url }}">{{ user.email }}</a></td>
-                <td><a href="{{ user.get_absolute_url }}">{{ user.role }}</a></td>
+                <td><a href="{{ user.get_absolute_url }}">{{ user.groups.name }}</a></td>
                 <td><a href="{% url 'user:user_update' user.id %}" > Edit </a></td>
                 <td><a href="{% url 'user:user_delete' user.id %}" > 
                 {% if user.role|stringformat:"s" == "admin" %}

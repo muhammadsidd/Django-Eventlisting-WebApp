@@ -4,7 +4,9 @@
 {% block content %}
     <form method="post" action="{% url 'user:user_create' %}" enctype="multipart/form-data">{% csrf_token %}
         {% csrf_token %}
+        <br>
         {{ form.as_p }}
+        <br>
         <button type="submit" value="Save">Save</button>
         <a href="{% url 'user:user_List' %}" > Cancel </a>
     </form>

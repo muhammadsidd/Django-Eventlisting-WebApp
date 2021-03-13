@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Group
 from django.urls import reverse
 from datetime import date
 
@@ -13,12 +13,10 @@ class Role(models.Model):
 
 
 class UserManagement(models.Model):
-    role = models.ForeignKey(Role, null=False, related_name='role', on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
+    user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, default=1, on_delete=models.CASCADE)
 
 
     def __str__(self):
-        return self.first_name
+        return self.user
     
