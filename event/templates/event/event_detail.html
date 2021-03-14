@@ -3,33 +3,39 @@
 {% load static %}
 
 {% block content %}
-     <div id="sidebar">
-        <h3>Categories</h3>
-        <ul>
-            <li>
-                <a href="{% url 'event:event_list' %}">All</a>
-            </li>
-            {% for c in categories %}
-            <li {% if c.name == event.category %} class="selected"{% endif %}>
-                <a href="{{ c.get_absolute_url }}">{{ c.name }}</a>
-            </li>
-            {% endfor %}
-        </ul>
-    </div>
 
-    <div id="main" class="event-detail">
-        <h1>{{ event.name }} </h1>
-        <div class="event-detail">
-            <a href="{{ event.get_absolute_url }}">
-                <image src="{% if event.images %}
-                                {{ event.images.url }}
-                             {% else %}
-                                {% static 'images/no_image.png' %}
-                             {% endif %}">
-                </image>
-            </a>
-        </div>
+<h1>{{event.name}}</h1>
+<div class="container">
+  <div class="row">
+    <div class="col-sm" style='font-size:18px'>
+    <p> Event Name: <b>{{event.title}}</b></p>
+    
+     <p>Category: <b>{{event.Category}}</b></p>
+     <p>Location: <b>{{event.location}}</b></p>
+     <p>Start Date: <b>{{event.start_date}} </b></p>
+     <p>End Date: <b>{{event.end_date}}</b> </p>
+    </div>
+    <div class="col-sm" style='font-size:18px'>
+          <p>Description: <b> {{event.description}} </b></p>
+          <br/>
+          <p>adult price:<b> {{event.adult_price}} <b></p>
+          <p>child price: <b>{{event.child_price}} <b></p>
 
     </div>
+    <div class="col-sm">
+        <img class="card-img-top" src="{{event.image.url}}"  style='width:400px' alt="">
 
+      <img  />
+    </div>
+  </div>
+<br/>
+  <div class ='row'>
+     <form method="post" action="" enctype="multipart/form-data" style="width:100%">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" value="Save" class='block' style="width:100%">Registration Button (only if registration is allowed)</button>
+       
+    </form>
+  </div>
+</div>
 {% endblock %}

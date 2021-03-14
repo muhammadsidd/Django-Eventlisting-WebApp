@@ -385,6 +385,12 @@ Base.html */
   .sidenav a {font-size: 18px;}
 }
 
+
 /*
 End SideBar Csss
 Base.html */
+
+div.card-body {
+    font-size: 15px !important;
+    
+}
