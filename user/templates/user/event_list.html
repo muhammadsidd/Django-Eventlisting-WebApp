@@ -2,15 +2,20 @@
 {% extends 'base.html' %}
 <h1>{% block title %}User View {% endblock title %}</h1>
 
-
+{% block active_class2 %}
+class="active"
+{% endblock %}
 {% block content %}
+
+
+<p class='pageHeader'>Event Registration (user view)</p>
     {% if events %}
            <div class="container">
   <div class="row">
 
         {% for event in events %}
      <div class="col-sm">
-     <a href="{% url 'event:event_detail' event.id %}">
+     <a class='customLink' href="{% url 'event:event_detail' event.id %}">
       <div class="card" style='height:100%'>
   <img class="card-img-top" src="{{event.image.url}}"  style='height:100%' alt="">
   <div class="card-body" style='font-size:15px'>
