@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
 from user.models import UserManagement,Role
+from event.models import Event
 from user.forms import UserForm, CreateUserForm
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.forms import UserCreationForm
@@ -15,7 +16,7 @@ class UserList (LoginRequiredMixin,ListView):
     template_name = 'user/user_List.html'
     context_object_name = 'users'
     login_url = 'login'
-
+    
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(UserList, self).form_valid(form)
@@ -62,3 +63,11 @@ def registerPage(request):
 
     context = {'form' : form}
     return render(request, 'register.html', context)
+
+
+class EventList(LoginRequiredMixin, ListView):
+    model = Event
+    template_name = 'user/event_list.html'
+    context_object_name = 'events'
+    success_url = reverse_lazy('user:event_list')
+    login_url = 'login'
