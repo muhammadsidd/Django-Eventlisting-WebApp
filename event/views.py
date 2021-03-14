@@ -22,7 +22,7 @@ class EventCreate(LoginRequiredMixin, CreateView):
     model = Event
     form_class = EventForm
     template_name = 'event/event_create.html'
-    success_url = reverse_lazy('event:event_List')
+    success_url = reverse_lazy('event:event_list')
     login_url = 'login'
 
     def form_valid(self, form):
@@ -69,3 +69,4 @@ class EventDetail(DetailView):
     model = Event
     template_name = 'event/event_detail.html'
     context_object_name = 'event'
+

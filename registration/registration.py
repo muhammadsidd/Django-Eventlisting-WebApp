@@ -14,7 +14,7 @@ class Registration(object):
         event_id = str(event.id)
         if event_id not in self.session_registration_obj:
             self.session_registration_obj[str(event_id)] = {'quantity_Adult': 0, 'price_Adult': str(event.adult_price)}
-        self.session_registration_obj_obj[str(event_id)]['quantity_Adult'] += 1
+        self.session_registration_obj[str(event_id)]['quantity_Adult'] += 1
         self.session[SESSION_ID_REGISTRATION] = self.session_registration_obj
         self.session.modified = True
 
