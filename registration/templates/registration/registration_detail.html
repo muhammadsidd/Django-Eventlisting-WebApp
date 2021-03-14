@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Registration
+{% endblock %}
+
+{% block content %}
+<h1 xmlns:orders="http://www.w3.org/1999/xhtml">Your Registrations</h1>
+    <table class="cart">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Product</th>
+                <th>Adult Quantity</th>
+                <th>Child Quantity</th>
+                <th>Remove Adult</th>
+                <th>Remove Child</th>
+                <th>Adult price</th>
+                <th>child price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in registration %}
+            {% with event=item.event %}
+            <tr>
+                <td>
+                    <a href="{% url 'event:event_detail' event.id %}">
+                        <img src="{% if event.image %}{{ event.image.url }}{% else %}{% static 'images/no_image.png' %}{% endif %}">
+                    </a>
+                </td>
+                <td>{{ event.title }}</td>
+                <td>
+                    <form action="{% url 'registration:registration_adult_add' event.id %}" method="post">
+                        {{ item.quantity_Adult }} &nbsp;&nbsp;&nbsp;
+                        <input type="submit" value="Register One More Adult">
+                        {% csrf_token %}
+                    </form>
+                </td>
+                <td>
+                    <form action="{% url 'registration:registration_child_add' event.id %}" method="post">
+                        {{ item.quantity_Child }} &nbsp;&nbsp;&nbsp;
+                        <input type="submit" value="Register One more Child">
+                        {% csrf_token %}
+                    </form>
+                </td>
+                <td><a href="{% url 'cart:cart_adult_remove' event.id %}">Remove Adult</a></td>
+                <td><a href="{% url 'cart:cart_child_remove' event.id %}">Remove Child</a></td>
+                <td class="num">${{ item.price_Adult }}</td>
+                <td class="num">${{ item.price_Child }}</td>
+                <td class="num">${{ item.total_price}}</td>
+            </tr>
+            {% endwith %}
+        {% empty  %}
+        <h2> No Registration Exists</h2>
+        {% endfor %}
+        <tr class="total">
+            <td>Total</td>
+            <td colspan="4"></td>
+            <td class="num">${{registration.get_total_price}}</td>
+        </tr>
+        </tbody>
+    </table>
+{% endblock %}

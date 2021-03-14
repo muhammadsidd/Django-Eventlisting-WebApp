@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     'event',
+    'registration',
 ]
 
 MIDDLEWARE = [
@@ -116,3 +117,4 @@ STATIC_ROOT = '/static/'
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+SESSION_ID_REGISTRATION = 'registration'
