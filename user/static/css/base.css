@@ -376,15 +376,48 @@ Base.html */
 
 .main {
   margin-left: 160px; /* Same as the width of the sidenav */
-  font-size: 28px; /* Increased text to enable scrolling */
+  font-size: 15px; /* Increased text to enable scrolling */
   padding: 0px 10px;
 }
 
+.sidenav .active {
+    color: black !important;
+}
+
+.pageHeader {
+    background-color: #efefef;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+.floatBtn{
+    float: right;
+    margin-bottom: 15px;
+}
+
+.customLink{
+    color:black;
+    font-weight: bold;
+}
+.customLink :hover{
+   
+    color:blue;
+}
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
   .sidenav a {font-size: 18px;}
 }
 
+
 /*
 End SideBar Csss
 Base.html */
+
+div.card-body {
+    font-size: 15px !important;
+    
+}
