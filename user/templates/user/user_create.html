@@ -3,8 +3,15 @@
 
 {% block content %}
     <form method="post" action="{% url 'user:user_create' %}" enctype="multipart/form-data">{% csrf_token %}
-        {% csrf_token %}
         <br>
+
+{% if form.errors %}
+                       {% for field in form %}
+                                {% for error in field.errors %}
+                                    {{ error|escape }}
+                                {% endfor %}
+                            {% endfor %}
+
         {%for field in form %}
     <td><td><br>{{field.label}}</br></td></td>
 

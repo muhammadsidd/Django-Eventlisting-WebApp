@@ -25,7 +25,7 @@ class="active"
                 <td><p><b>{{ user.first_name }}</b></p></td>
                 <td><p><b>{{ user.last_name }}</b></p></a></td>
                 <td><p><b>{{ user.email }}</b></p></a></td>
-                <td><p><b>{{ user.groups }}</b></p></td>
+                <td><p><b>{{ user.groups.all.0 }}</b></p></td>
                 <td><a href="{% url 'user:user_update' user.id %}" > Edit </a></td>
                 <td><a href="{% url 'user:user_delete' user.id %}" > 
                 {% if user.role|stringformat:"s" == "admin" %}

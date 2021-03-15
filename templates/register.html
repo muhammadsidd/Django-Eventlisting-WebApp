@@ -12,10 +12,8 @@
     <title>Jumbotron Template for Bootstrap</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="jumbotron.css" rel="stylesheet">
     <!-- Custom styles for this template -->
 
 
@@ -35,6 +33,16 @@
 
 <form method="POST" action="">
     {% csrf_token %}
+
+                            {% if form.errors %}
+                                    {% for field in form %}
+                                {% for error in field.errors %}
+                                    {{ error|escape }}
+                                {% endfor %}
+                            {% endfor %}
+                            {% endif %}
+
+
     {%for field in form %}
     <td><td><br>{{field.label}}</br></td></td>
 

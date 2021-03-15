@@ -57,4 +57,3 @@ def registration_child_remove(request, event_id):
     session_registration_obj = Registration(request)
     session_registration_obj.removeChild(event_id)
     return HttpResponseRedirect(reverse_lazy('registration:registration_detail'))
-
