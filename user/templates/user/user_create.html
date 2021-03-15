@@ -5,7 +5,12 @@
     <form method="post" action="{% url 'user:user_create' %}" enctype="multipart/form-data">{% csrf_token %}
         {% csrf_token %}
         <br>
-        {{ form.as_p }}
+        {%for field in form %}
+    <td><td><br>{{field.label}}</br></td></td>
+
+        {{field}}
+    <br>
+    {% endfor %}
         <br>
         <button type="submit" value="Save">Save</button>
         <a href="{% url 'user:user_List' %}" > Cancel </a>

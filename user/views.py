@@ -1,6 +1,7 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 # Create your views here
 from django.urls import reverse, reverse_lazy
@@ -16,7 +17,11 @@ class UserList (LoginRequiredMixin,ListView):
     template_name = 'user/user_List.html'
     context_object_name = 'users'
     login_url = 'login'
-    
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(UserList, self).get_context_data(**kwargs)
+        context['groups'] = Group.objects.all()
+        return context
+
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(UserList, self).form_valid(form)
@@ -54,14 +59,29 @@ class UserDelete(LoginRequiredMixin,DeleteView,):
         return super(UserDelete, self).form_valid(form)
 
 def registerPage(request):
+    # form = CreateUserForm()
+    #
+    # if request.method == "POST":
+    #     form = CreateUserForm(request.POST)
+    #     if form.is_valid():
+    #         form.save()
+    #
+    # context = {'form' : form}
+    # return render(request, 'register.html', context)
     form = CreateUserForm()
-
-    if request.method == "POST":
+    if request.method == 'POST':
         form = CreateUserForm(request.POST)
         if form.is_valid():
-            form.save()
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            group = Group.objects.get(name='User')
+            user.groups.add(group)
 
-    context = {'form' : form}
+            messages.success(request, 'Account was created for ' + username)
+
+            return redirect('login')
+
+    context = {'form': form}
     return render(request, 'register.html', context)
 
 
