@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
@@ -12,19 +13,28 @@ from user.forms import UserForm, CreateUserForm
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.forms import UserCreationForm
 
-class UserList (LoginRequiredMixin,ListView):
-    model = User
-    template_name = 'user/user_List.html'
-    context_object_name = 'users'
-    login_url = 'login'
-    def get_context_data(self, *, object_list=None, **kwargs):
-        context = super(UserList, self).get_context_data(**kwargs)
-        context['groups'] = Group.objects.all()
-        return context
+# class UserList (LoginRequiredMixin,ListView):
+#     model = User
+#     template_name = 'user/user_List.html'
+#     context_object_name = 'users'
+#     login_url = 'login'
+#     def get_context_data(self, *, object_list=None, **kwargs):
+#         context = super(UserList, self).get_context_data(**kwargs)
+#         context['groups'] = Group.objects.all()
+#         return context
+#
+#     def form_valid(self, form):
+#         form.instance.user = self.request.user
+#         return super(UserList, self).form_valid(form)
+from user.permissions import admin_only
 
-    def form_valid(self, form):
-        form.instance.user = self.request.user
-        return super(UserList, self).form_valid(form)
+
+@login_required(login_url='login')
+@admin_only
+def userlist(request):
+    users = User.objects.all()
+    return render(request, 'user/user_List.html', {'users':users})
+
 
 class UserCreate(LoginRequiredMixin,CreateView):
     model = User
@@ -48,7 +58,7 @@ class UserUpdate(LoginRequiredMixin,UpdateView):
         form.instance.user = self.request.user
         return super(UserUpdate, self).form_valid(form)
 
-class UserDelete(LoginRequiredMixin,DeleteView,):
+class UserDelete(LoginRequiredMixin,DeleteView):
     model = User
     template_name = 'user/user_confirm_delete.html'
     success_url = reverse_lazy('user:user_List')
@@ -59,15 +69,7 @@ class UserDelete(LoginRequiredMixin,DeleteView,):
         return super(UserDelete, self).form_valid(form)
 
 def registerPage(request):
-    # form = CreateUserForm()
-    #
-    # if request.method == "POST":
-    #     form = CreateUserForm(request.POST)
-    #     if form.is_valid():
-    #         form.save()
-    #
-    # context = {'form' : form}
-    # return render(request, 'register.html', context)
+
     form = CreateUserForm()
     if request.method == 'POST':
         form = CreateUserForm(request.POST)

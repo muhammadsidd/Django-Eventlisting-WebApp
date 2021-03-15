@@ -10,7 +10,7 @@ class="active"
     {% if user %}
         <table>
             <tr>
-            <p><a class='btn btn-info floatBtn' href="{% url 'user:user_create' %}" > ADD N
+            <p><a class='btn btn-info floatBtn' href="{% url 'register' %}" > ADD N
             EW USER </a></p></tr>
             <tr style="background-color:black;color:white;">
                 <th> First Name </th>
@@ -25,7 +25,7 @@ class="active"
                 <td><p><b>{{ user.first_name }}</b></p></td>
                 <td><p><b>{{ user.last_name }}</b></p></a></td>
                 <td><p><b>{{ user.email }}</b></p></a></td>
-                <td><p><b>{{ user.groups.name }}</b></p></td>
+                <td><p><b>{{ user.groups }}</b></p></td>
                 <td><a href="{% url 'user:user_update' user.id %}" > Edit </a></td>
                 <td><a href="{% url 'user:user_delete' user.id %}" > 
                 {% if user.role|stringformat:"s" == "admin" %}
