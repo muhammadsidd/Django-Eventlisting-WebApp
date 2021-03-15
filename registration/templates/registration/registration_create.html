@@ -3,7 +3,7 @@
 
 {% block content %}
 <p class='pageHeader'>Event Registration {{event.title}}</p>
-    <form method="post" action="{% url 'registration:registration_create' event.id %}" enctype="multipart/form-data">{% csrf_token %}
+    <form method="POST" action="{% url 'registration:registration_confirm'%}" enctype="multipart/form-data">{% csrf_token %}
         {% csrf_token %}
         <br>
         {{ form.as_p }}

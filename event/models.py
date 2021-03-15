@@ -10,6 +10,7 @@ class Category(models.Model):
 
 
 class Event(models.Model):
+    Category = models.ForeignKey(Category, null=True, related_name='categories', on_delete=models.CASCADE)
     title = models.CharField(max_length=30)
     description = models.CharField(max_length=200)
     start_date = models.DateTimeField(default=timezone.now)
@@ -18,7 +19,6 @@ class Event(models.Model):
     end_time = models.TimeField(blank=True, null=True)
     location = models.CharField(max_length=30)
     image = models.ImageField(upload_to='event', blank=True)
-    Category = models.ForeignKey(Category, null=True, related_name='categories', on_delete=models.CASCADE)
     adult_price = models.FloatField(default=0.0)
     child_price = models.FloatField(default=0.0)
     Allow_Registration = models.BooleanField()

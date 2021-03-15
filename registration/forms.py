@@ -1,8 +1,8 @@
 from django import forms
 
-from .models import RegistrationItem
+from .models import Registration
 
 class RegistrationForm(forms.ModelForm):
     class Meta:
-        model = RegistrationItem
+        model = Registration
         fields = '__all__'
