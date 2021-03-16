@@ -143,6 +143,7 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 SESSION_ID_REGISTRATION = 'registration'
+LOGIN_REDIRECT_URL='user:event_list'
 
 
 

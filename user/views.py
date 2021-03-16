@@ -6,7 +6,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from user.permissions import admin_only
 # Create your views here
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, UpdateView, DeleteView, ListView
+from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 from user.models import UserManagement,Role
 from event.models import Event
 from user.forms import UserForm, CreateUserForm
@@ -91,4 +91,10 @@ class EventList(LoginRequiredMixin, ListView):
     template_name = 'user/event_list.html'
     context_object_name = 'events'
     success_url = reverse_lazy('user:event_list')
+    login_url = 'login'
+
+class UserDetail(LoginRequiredMixin, DetailView):
+    model = User
+    template_name = 'user/user_detail.html'
+    context_object_name = 'user'
     login_url = 'login'

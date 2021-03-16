@@ -1,0 +1,21 @@
+{% extends '../base.html' %}
+
+{% load static %}
+
+{% block content %}
+        <ul>
+            <li>
+                <a href="{% url 'user:user_List' %}">All</a>
+        </ul>
+
+    <div id="main" class="user-detail">
+        <h1>USER PROFILE</h1>
+        <p>{{ user.first_name }} {{ user.last_name }} </p>
+<br>
+        <div class="user-detail">
+            <p>{{ user.username }}</p><br>
+            <p> {{ user.email|linebreaks }} </p>
+        </div>
+    </div>
+
+{% endblock %}

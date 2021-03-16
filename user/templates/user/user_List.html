@@ -13,15 +13,19 @@ class="active"
             <p><a class='btn btn-info floatBtn' href="{% url 'register' %}" > ADD N
             EW USER </a></p></tr>
             <tr style="background-color:black;color:white;">
+                <th> Username </th>
                 <th> First Name </th>
                 <th> Last Name </th>
                 <th> Email Name </th>
                 <th> Role Name </th>
+                <th> Update </th>
+                <th> Remove </th>
                
             </tr>
 
         {% for user in users %}
             <tr>
+                <td><a href="{% url 'user:user_detail' user.id %}">{{ user.username }}</a></td>
                 <td><p><b>{{ user.first_name }}</b></p></td>
                 <td><p><b>{{ user.last_name }}</b></p></a></td>
                 <td><p><b>{{ user.email }}</b></p></a></td>
