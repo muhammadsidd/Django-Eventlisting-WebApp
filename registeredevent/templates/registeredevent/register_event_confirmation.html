@@ -2,12 +2,14 @@
 {% block title %}Registration{% endblock title %}
 
 {% block content %}
+
+{{user.id}} {{event.id}}
 <p class='pageHeader'>Event Registration {{event.title}}</p>
-    <form method="POST" action="{% url 'registeredevent:register_confirm' event.id %}" enctype="multipart/form-data">{% csrf_token %}
+    <form method="POST" action="{% url 'registeredevent:register_confirm' event_id user_id %}" enctype="multipart/form-data">{% csrf_token %}
         <br>
         {{ form.as_p }}
         <br>
         <button type="submit" value="Save">Save</button>
         <a href="{% url 'event:event_list' %}" > Cancel </a>
 
-{% endblock content %}
+{% endblock content %} 
