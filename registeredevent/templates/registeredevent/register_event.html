@@ -1,0 +1,22 @@
+
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+</body>
+</html>{% extends '../base.html' %}
+{% block title %}Create New Event{% endblock title %}
+{% block content %}
+   
+{{user_id}}
+     <form method="post" action="{% url 'registeredevent:register_event_confirm' %}"  enctype="multipart/form-data" >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" value="Save">Save</button>
+        <a href="" >back </a>
+    </form>
+{% endblock content %}
+

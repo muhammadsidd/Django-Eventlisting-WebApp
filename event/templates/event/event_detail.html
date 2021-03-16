@@ -30,12 +30,18 @@
   </div>
 <br/>
   <div class ='row'>
-     <form method="post" action="{% url 'registration:registration_create' event.id %}" enctype="multipart/form-data" style="width:100%">
+     {% comment %} <form method="post" action="{% url 'registration:registration_create' event.id %}" enctype="multipart/form-data" style="width:100%">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" value="Save" class='block' style="width:100%">Registration Button (only if registration is allowed)</button>
        
-    </form>
+    </form> {% endcomment %}
+     <form method="POST" action="{% url 'registeredevent:registeredevent' event.id user.id %}" enctype="multipart/form-data" style="width:100%">
+        {% csrf_token %}
+        
+        <button type="submit" value="Save" class='block' style="width:100%">Registration Button (only if registration is allowed)</button>
+       
+    </form> 
   </div>
 </div>
 {% endblock %}

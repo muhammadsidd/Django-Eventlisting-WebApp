@@ -36,8 +36,11 @@
 </nav>
 
   <div class="sidenav">
+      {% if user.groups.all.0|stringformat:"s" == "Admin" %}
+
   <a  {% block active_class %} {% endblock %} href="{% url 'user:user_List' %}">User Managemenet</a>
   <a {% block active_class1 %} {% endblock %} href="{% url 'event:event_list' %}">Event Managemenet</a>
+  {% endif %}
   <a {% block active_class2 %} {% endblock %} href="{% url 'user:event_list' %}">User View</a>
 </div>
 

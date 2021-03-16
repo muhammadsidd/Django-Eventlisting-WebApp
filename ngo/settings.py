@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'event',
     'registration',
     'storages',
+    'registeredevent',
+    'app_test'
 ]
 
 MIDDLEWARE = [
