@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
-
+from user.permissions import admin_only
 # Create your views here
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView
@@ -26,7 +26,7 @@ from django.contrib.auth.forms import UserCreationForm
 #     def form_valid(self, form):
 #         form.instance.user = self.request.user
 #         return super(UserList, self).form_valid(form)
-from user.permissions import admin_only
+
 
 
 @login_required(login_url='login')
@@ -73,7 +73,6 @@ def registerPage(request):
     form = CreateUserForm()
     if request.method == 'POST':
         form = CreateUserForm(request.POST)
-        print("beforevaid")
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
@@ -81,7 +80,6 @@ def registerPage(request):
             user.groups.add(userselect[0].id)
 
             messages.success(request, 'Account was created for ' + username)
-
             return redirect('login')
 
     context = {'form': form}

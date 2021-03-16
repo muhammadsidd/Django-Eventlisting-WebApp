@@ -1,38 +1,33 @@
+from django.contrib.auth.models import User
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
+from rest_framework.generics import get_object_or_404
+
+from event.models import Event
 from registeredevent.models import RegisteredEvent
 from registeredevent.forms import RegistrationForm
 from django.shortcuts import render
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 
-def test(request):
-    users = RegisteredEvent.objects.all()
-    return render(request, 'registeredevent/register_event_confirmation.html', {'users':users})
+def registration_create(request, event_id, user_id):
 
-# class Confirmation(ListView):
-#     model = RegisteredEvent
-#     template_name = '/register_event_confirmation.html'
+        event = get_object_or_404(Event, id=event_id)
+        user = get_object_or_404(User, id=user_id)
+        registration = RegisteredEvent.objects.all()
+        form = RegistrationForm()
+        return render(request, 'registeredevent/register_event_confirmation.html', {'registration':registration ,'form': form,'user':user, 'event':event})
 
-    
-class CreateRegister(CreateView):
-
-    model = RegisteredEvent
-    form_class = RegistrationForm
-    template_name = 'registeredevent/register_event.html'
-    success_url = reverse_lazy('regesteredevent:register_event_confirm')
-
-    def post(self, request, *args, **kwargs):
-        # form = self.form_class(request.POST)
-        print("-----")
-        user_id = self.kwargs['user_id'] 
-        print(self.kwargs['event_id'])
+def registration_confirm(request,event_id):
+    if request.method == "POST":
+        print("here")
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            registration = form.save(commit=False)
+            registration.save()
+            x = RegisteredEvent.total_value(event_id)
+            print(x)
+            return HttpResponseRedirect(reverse('event:event_list'))
 
 
-        print("-----")
-        # if form.is_valid():
-        #     # <process form cleaned data>
-        #     return HttpResponseRedirect('/success/')
-
-        return render(request, self.template_name, {'form': self.form_class,"user_id":user_id})
