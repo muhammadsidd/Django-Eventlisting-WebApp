@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'user',
     'event',
     'registration',
+    'storages',
 ]
 
 MIDDLEWARE = [
@@ -73,11 +74,33 @@ WSGI_APPLICATION = 'ngo.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+'default': {
+
+    'ENGINE': 'django.db.backends.mysql',
+
+    'NAME': 'ngo',
+
+    'USER': 'admin',
+
+    'PASSWORD': 'Admin.123',
+
+    'HOST': 'ngo.cvppy2vexxcj.us-east-2.rds.amazonaws.com',
+
+    'PORT': '3306',
+    'OPTIONS': {
+        'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+    },
+
     }
+
 }
 
 # Password validation
@@ -118,3 +141,15 @@ STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 SESSION_ID_REGISTRATION = 'registration'
+
+
+
+# S3 upload images 
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_DEFAULT_ACL = None
+AWS_ACCESS_KEY_ID = 'AKIA55QFP3X3GQW6RNHE'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'ngo-project'
+AWS_S3_REGION_NAME = 'us-east-2'
+
