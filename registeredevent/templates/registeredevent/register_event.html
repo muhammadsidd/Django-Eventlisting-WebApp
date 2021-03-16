@@ -11,8 +11,8 @@
 {% block title %}Create New Event{% endblock title %}
 {% block content %}
    
-{{user_id}}
-     <form method="post" action="{% url 'registeredevent:register_event_confirm' event.id user.id %}"  enctype="multipart/form-data" >
+{{child_price}}
+     <form method="post" action="{% url 'registeredevent:register_event_confirm' event_id user_id %}"  enctype="multipart/form-data" >
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" value="Save">Save</button>

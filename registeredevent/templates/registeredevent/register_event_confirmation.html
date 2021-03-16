@@ -1,15 +1,33 @@
-{% extends '../base.html' %}
+{% extends 'base.html' %}
 {% block title %}Registration{% endblock title %}
 
 {% block content %}
+ <p class='pageHeader'>{{event_title}}</p>
+ <div class='noteThat'>
+ <p>Note That child price for this Event : {{child_price}}$</p>
+ <p>Note That adult price for this Event : {{adult_price}}$</p>
+  </div>
+ <p class='formName'>Registration From</p>
+    <form method="POST" action="{% url 'registeredevent:register_confirm' event_id user_id %}" enctype="multipart/form-data">
+    {% csrf_token %}
+       
+       <div class="field-title container">
+ {{ form.as_p }}
+  <div class="row gridbtn">
+    <div class="col">
+     <button class="btn btn-success" type="submit" value="Save">Next</button>
+    </div>
+    <div class="col">
+             <a class="btn btn-light"  href="{% url 'event:event_detail' event_id %}" > Back </a>
 
-{{user.id}} {{event.id}}
-<p class='pageHeader'>Event Registration {{event.title}}</p>
-    <form method="POST" action="{% url 'registeredevent:register_confirm' event_id user_id %}" enctype="multipart/form-data">{% csrf_token %}
-        <br>
-        {{ form.as_p }}
-        <br>
-        <button type="submit" value="Save">Save</button>
-        <a href="{% url 'event:event_list' %}" > Cancel </a>
+    </div>
+  </div>
+        <div>
+
+        </div>
+ </div>
+       
+        
+        
 
 {% endblock content %} 

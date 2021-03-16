@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Registration{% endblock title %}
+
+{% block content %}
+<head>
+    <meta charset="utf-8" />
+
+
+</head>
+
+   <form  method="POST" action="{% url 'registeredevent:confirmation' event_id user_id %}" enctype="multipart/form-data">{% csrf_token %}
+        <br>
+   <p id='hiddenID' style='display:none;' >     {{ form }}</p>
+        <br>
+        Total Amount is :{{total_amount}}
+        <button type="submit" value="Save">Confirm</button>
+        <a href="{% url 'event:event_list' %}" > Cancel </a>
+
+{% endblock content %} 

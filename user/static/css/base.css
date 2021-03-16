@@ -12,7 +12,44 @@ body {
     font-family:helvetica, sans-serif;
 }
 
+#hiddenID {
+    display: none;
+}
 
+div.field-title label {
+    font-size: 15px;
+    font-weight: bold;
+}
+.field-title.container {
+    background-color: #d6d6d6;
+    height: 500px;
+    width: 474px;
+    /* margin: auto; */
+    /* display: flex; */
+    border-radius: 50px;
+    /* margin: auto; */
+    /* width: 50%; */
+    border: 3px solid black;
+    padding: 82px;
+}
+.formName{
+    font-size: 15px;
+    font-weight: bold;
+    /* background-color: red; */
+    text-align: center;
+}
+
+.gridbtn{ 
+    padding-bottom:10px;
+}
+.noteThat{
+    background-color: #ffc107;
+    font-size: 18px;
+    font-weight: bold;
+}
+div.field-title input {
+    font-size: 20px;
+}
 
 h1, h2, h3, h4, h5 , h6 {
     font-family: 'Ubuntu', sans-serif; font-weight:normal;

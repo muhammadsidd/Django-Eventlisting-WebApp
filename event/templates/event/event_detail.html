@@ -4,7 +4,7 @@
 
 {% block content %}
 
-<h1>{{event.name}}</h1>
+<h1>{{event.title}}</h1>
 <div class="container">
   <div class="row">
     <div class="col-sm" style='font-size:18px'>
@@ -36,7 +36,8 @@
         <button type="submit" value="Save" class='block' style="width:100%">Registration Button (only if registration is allowed)</button>
        
     </form> {% endcomment %}
-     <form method="POST" action="{% url 'registeredevent:registeredevent' event.id user.id %}" enctype="multipart/form-data" style="width:100%">
+
+     <form method="POST" action="{% url 'registeredevent:registeredevent' event.id user.id event.title  event.child_price|floatformat:'0' event.adult_price|floatformat:'0' %}" enctype="multipart/form-data" style="width:100%">
         {% csrf_token %}
         
         <button type="submit" value="Save" class='block' style="width:100%">Registration Button (only if registration is allowed)</button>
