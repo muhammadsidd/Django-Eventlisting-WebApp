@@ -26,8 +26,8 @@ def registration_confirm(request,event_id):
         if form.is_valid():
             registration = form.save(commit=False)
             registration.save()
-            # x = RegisteredEvent.total_value(event_id)
-            # print(x)
+            x = registration.total_value(registration.event)
+            print(x)
             return HttpResponseRedirect(reverse('event:event_list'))
 
 

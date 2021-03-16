@@ -14,7 +14,7 @@ class RegisteredEvent(models.Model):
     event = models.ForeignKey(Event, default=1, on_delete=models.CASCADE)
 
     @property
-    def total_value(self,event_id):
+    def total_value(self, event_id):
         eventx = self.event.objects.get(pk=event_id)
         adult=eventx.adult_price
         child=eventx.child_price
