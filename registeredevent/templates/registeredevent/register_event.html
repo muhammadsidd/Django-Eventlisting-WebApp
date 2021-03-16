@@ -12,7 +12,7 @@
 {% block content %}
    
 {{user_id}}
-     <form method="post" action="{% url 'registeredevent:register_event_confirm' %}"  enctype="multipart/form-data" >
+     <form method="post" action="{% url 'registeredevent:register_event_confirm' event.id user.id %}"  enctype="multipart/form-data" >
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit" value="Save">Save</button>

@@ -3,12 +3,12 @@ from django import forms
 from .models import RegisteredEvent
 
 class RegistrationForm(forms.ModelForm):
-    # firstname = forms.CharField(
-    #     label='fisrt name',
-    #     max_length=70,
-    #     widget=forms.TextInput(),
-    #     required=True,
-    # );
+    firstname = forms.CharField(
+        label='fisrt name',
+        max_length=70,
+        widget=forms.TextInput(),
+        required=True,
+    );
     # lastname = forms.CharField(
     #     label='Last name',
     #     max_length=70,
@@ -23,5 +23,5 @@ class RegistrationForm(forms.ModelForm):
     # );  
     class Meta:
         model = RegisteredEvent
-        fields = '__all__'
+        fields = ['adult_quantity','child_quantity']
 

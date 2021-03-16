@@ -12,19 +12,24 @@ from django.http import HttpResponse, HttpResponseRedirect
 
 
 def registration_create(request, event_id, user_id):
-
-        event = get_object_or_404(Event, id=event_id)
-        user = get_object_or_404(User, id=user_id)
-        registration = RegisteredEvent.objects.all()
+        print(event_id)
+        print(user_id)
+        
+        # registration = RegisteredEvent.objects.all()
         form = RegistrationForm()
-        return render(request, 'registeredevent/register_event_confirmation.html', {'registration':registration ,'form': form,'user':user, 'event':event})
+        return render(request, 'registeredevent/register_event_confirmation.html', {'form': form,'event_id':event_id, 'user_id':user_id})
 
-def registration_confirm(request,event_id):
+def registration_confirm(request,event_id,user_id):
     if request.method == "POST":
         print("here")
+        print(event_id)
+
+        print(user_id)
         form = RegistrationForm(request.POST)
         if form.is_valid():
             registration = form.save(commit=False)
+            registration.user_id = user_id
+            registration.event_id = event_id
             registration.save()
             # x = RegisteredEvent.total_value(event_id)
             # print(x)
