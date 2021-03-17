@@ -8,13 +8,13 @@
                 <a href="{% url 'user:user_List' %}">All</a>
         </ul>
 
-    <div id="main" class="user-detail">
-        <h1>USER PROFILE</h1>
-        <p>{{ user.first_name }} {{ user.last_name }} </p>
-<br>
+    <div id="main" style='font-weight:bold;padding:10px' class="user-detail">
+        <p class='pageHeader'>USER PROFILE</p>
+        <p>First Name : {{ user.first_name }} </p>
+        <p>Last Name :{{ user.last_name }} </p>
         <div class="user-detail">
-            <p>{{ user.username }}</p><br>
-            <p> {{ user.email|linebreaks }} </p>
+            <p>User Name : {{ user.username }}</p>
+            <p>Email : {{user.email }} </p>
         </div>
     </div>
 
