@@ -2,9 +2,9 @@
 {% block title %}Update User{% endblock title %}
 
 {% block content %}
-    <form method="post" enctype="multipart/form-data" >{% csrf_token %}
+    <form class='formName' method="post" enctype="multipart/form-data" >{% csrf_token %}
         {% csrf_token %}
-        {{ form.as_p }}
+        <p>{{ form }}</p>
         <button type="submit" value="Save">Save</button>
         <a href="{% url 'user:user_List' %}" > Cancel </a>
     </form>

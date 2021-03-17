@@ -1,4 +1,4 @@
-{% extends '../base.html' %}
+{% extends 'base.html' %}
 {% block title %}Registration{% endblock title %}
 
 {% block content %}
@@ -14,7 +14,7 @@
 <p class='pageHeader'>Event Registration {{event.title}}</p>
     <form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
         {% csrf_token %}
-        <br>
+        <br> 
         {{ form.as_p }}
         <br>
         <button type="submit" value="Save">Save</button>
