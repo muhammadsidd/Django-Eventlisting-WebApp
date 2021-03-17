@@ -26,7 +26,6 @@ urlpatterns = [
     path('', include('user.urls')),
     path('events/', include('event.urls')),
     path('test/', include('app_test.urls')),
-    # path('registrations/',include('registration.urls')),
     path('event-registration/',include('registeredevent.urls')),
 
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
