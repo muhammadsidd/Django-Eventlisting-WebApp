@@ -47,6 +47,21 @@ div.field-title label {
     font-size: 18px;
     font-weight: bold;
 }
+  
+
+div.cust{
+    text-align: center;
+    background-color: #e2e2e2;
+    border-radius: 54px;
+    padding: 10px;
+    margin: auto;
+    width: 700px;
+}
+/* .cust input {
+    width: 50%;
+    border-radius: 50px;
+} */
+
 div.field-title input {
     font-size: 20px;
 }
