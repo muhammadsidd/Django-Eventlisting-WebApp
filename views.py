@@ -1,5 +1,5 @@
-from django.core.mail import EmailMessage
-
+from event.models import Event
+from registeredevent.models import RegisteredEvent
 from registeredevent.forms import RegistrationForm
 from django.shortcuts import render
 
@@ -43,15 +43,7 @@ def confirmation(request,event_id,user_id):
             # registration.save()
             # return render(request,"carts/home.html",{})
             # return HttpResponseRedirect(reverse_lazy('adopcion:solicitud_listar'))
-            email = EmailMessage(
-                'Order Received',
-                'CONFIRMATION RECEIPT! This is email confirmation Email For the Event ID #' + str(event_id),
-                'talha_siddiquy@hotmail.com',
-                ['talha_siddiquy@hotmail.com'],
-            )
-            email.send()
             return HttpResponse("You Have Confirmed Your Registeration.. you will get an email sooon")
-
             # return HttpResponseRedirect(reverse('registeredevent:confirm_success',))
     
 

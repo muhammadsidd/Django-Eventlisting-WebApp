@@ -24,7 +24,7 @@ SECRET_KEY = '-3i72u(1^(+f9#-u+(w47n48mk^z_ihekq+paemlo@7ulqlk+r'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['3.129.128.79']
 
 # Application definition
 
@@ -92,9 +92,9 @@ DATABASES = {
 
     'USER': 'admin',
 
-    'PASSWORD': 'Mostwanted1996*',
+    'PASSWORD': 'Admin.123',
 
-    'HOST': 'ngo-project.cl44eh24rsby.us-east-2.rds.amazonaws.com',
+    'HOST': 'ngo.cvppy2vexxcj.us-east-2.rds.amazonaws.com',
 
     'PORT': '3306',
     'OPTIONS': {
@@ -155,10 +155,3 @@ AWS_SECRET_ACCESS_KEY = 'MNYErgYPwC66pRhnFa5IVJND+pVkLNO8EmpebN/8'
 AWS_STORAGE_BUCKET_NAME = 'ngo-project1'
 AWS_S3_REGION_NAME = 'us-east-2'
 
-#Email Confirmation
-EMAIL_HOST = 'smtp-mail.outlook.com'
-EMAIL_HOST_USER = 'talha_siddiquy@hotmail.com'
-EMAIL_HOST_PASSWORD = 'Mostwanted1996*'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
