@@ -92,7 +92,7 @@ DATABASES = {
 
     'USER': 'admin',
 
-    'PASSWORD': 'Mostwanted1996*',
+    'PASSWORD': '*',
 
     'HOST': 'ngo-project.cl44eh24rsby.us-east-2.rds.amazonaws.com',
 
