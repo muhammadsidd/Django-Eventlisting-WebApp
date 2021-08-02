@@ -28,8 +28,21 @@ class="active"
                 <th> End Date </th>
                
             </tr>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
 
-        {% for event in events %}
+			<form method="get">
+				{{filter.form}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+
+		</div>
+	</div>
+
+</div>
+        {% for event in filter.qs %}
             <tr>
                <!-- <td><a href="{{ event.get_absolute_url }}">{{ event.name}}</a></td>
                  <td><a href="{% url 'event:event_detail' event.id %}">
