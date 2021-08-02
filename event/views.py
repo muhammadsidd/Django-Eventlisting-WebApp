@@ -3,6 +3,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 from event.models import Event, Category
 from event.forms import EventForm, CategoryForm
+from .filters import EventFilter
 
 
 class EventList(LoginRequiredMixin, ListView):
@@ -16,6 +17,11 @@ class EventList(LoginRequiredMixin, ListView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(EventList, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = EventFilter(self.request.GET, queryset=self.get_queryset())
+        return context
 
 
 class EventCreate(LoginRequiredMixin, CreateView):
