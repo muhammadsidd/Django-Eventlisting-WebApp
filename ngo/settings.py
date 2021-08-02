@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'registration',
     'storages',
     'registeredevent',
-    'app_test'
+    'app_test',
+    'django_filters',
+    'bootstrapform',
 ]
 
 MIDDLEWARE = [
