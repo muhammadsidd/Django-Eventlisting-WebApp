@@ -12,6 +12,7 @@ from event.models import Event
 from user.forms import UserForm, CreateUserForm
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.forms import UserCreationForm
+from .filters import UserFilter
 
 # class UserList (LoginRequiredMixin,ListView):
 #     model = User
@@ -33,7 +34,8 @@ from django.contrib.auth.forms import UserCreationForm
 @admin_only
 def userlist(request):
     users = User.objects.all()
-    return render(request, 'user/user_List.html', {'users':users})
+    myFilter = UserFilter()
+    return render(request, 'user/user_List.html', {'users':users, 'myFilter':myFilter})
 
 
 class UserCreate(LoginRequiredMixin,CreateView):
@@ -98,3 +100,4 @@ class UserDetail(LoginRequiredMixin, DetailView):
     template_name = 'user/user_detail.html'
     context_object_name = 'user'
     login_url = 'login'
+
