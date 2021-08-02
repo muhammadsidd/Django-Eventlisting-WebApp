@@ -12,3 +12,7 @@ class EventFilter(django_filters.FilterSet):
     class Meta:
         model = Event
         fields = {'Category':['icontains'],'title': ['icontains']}
+
+    def filter_by_order(selfself,queryset,name,value):
+        expression = 'created' if value == 'ascending' else'-created'
+        return queryset.order_by(expression)
