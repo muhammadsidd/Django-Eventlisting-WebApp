@@ -34,7 +34,8 @@ from .filters import UserFilter
 @admin_only
 def userlist(request):
     users = User.objects.all()
-    myFilter = UserFilter()
+    myFilter = UserFilter(request.GET, queryset=users)
+    users = myFilter.qs
     return render(request, 'user/user_List.html', {'users':users, 'myFilter':myFilter})
 
 

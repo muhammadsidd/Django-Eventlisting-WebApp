@@ -6,7 +6,20 @@ class="active"
 {% endblock %}
 {% block content %}
 <p class='pageHeader'>User Management</p>
+<div class="row">
+	<div class="col">
+		<div class="card card-body">
 
+			<form method="get">
+				{{myFilter.form}}
+
+		    <button class="btn btn-primary" type="submit">Search</button>
+		  </form>
+
+		</div>
+	</div>
+
+</div>
     {% if user %}
         <table>
             <tr>
@@ -22,20 +35,7 @@ class="active"
                 <th> Remove </th>
                
             </tr>
-            <div class="row">
-	<div class="col">
-		<div class="card card-body">
 
-			<form method="get">
-				{{myFilter.form}}
-
-		    <button class="btn btn-primary" type="submit">Search</button>
-		  </form>
-
-		</div>
-	</div>
-
-</div>
 
         {% for user in users %}
             <tr>

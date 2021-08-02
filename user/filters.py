@@ -7,5 +7,5 @@ class UserFilter(django_filters.FilterSet):
 
     class Meta:
         model = user
-        fields = '__all__'
+        fields = ('groups','username',)
 
